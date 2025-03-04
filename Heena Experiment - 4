@@ -1,0 +1,54 @@
+Aim : Write a program to collect and store all the cards to assist the
+users in finding all the cards in a given symbol.This cards game
+consist of N number of cards. Get N number of cards details from
+the user and store the values in Card object with the attributes
+symbol and Number. Store all the cards in a map with symbols as
+its key and list of cards as its value. Map is used here to easily
+group all the cards based on their symbol. Once all the details are
+captured print all the distinct symbols in alphabetical order from
+the Map.
+Code
+import java.util.*;
+class Card {
+ String symbol;
+ String name;
+ Card(String symbol, String name) {
+ this.symbol = symbol;
+ this.name = name;
+ }
+ public String toString() {
+ return name + " (" + symbol + ")";
+ }
+}
+public class CardCollection {
+ static Collection<Card> cards = new ArrayList<>();
+ static Scanner sc = new Scanner(System.in);
+Student Name: Heena UID: 22BCS17279
+ public static void main(String[] args) {
+ while (true) {
+ System.out.println("1.Add 2.Find by Symbol 3.Show All 4.Exit");
+ int choice = sc.nextInt();
+ switch (choice) {
+ case 1 -> addCard();
+ case 2 -> findBySymbol();
+ case 3 -> cards.forEach(System.out::println);
+ case 4 -> { return; }
+ default -> System.out.println("Invalid");
+ }
+ }
+ }
+ static void addCard() {
+ System.out.print("Enter Symbol: ");
+ String symbol = sc.next();
+ sc.nextLine();
+ System.out.print("Enter Name: ");
+ String name = sc.nextLine();
+ cards.add(new Card(symbol, name));
+ }
+ static void findBySymbol() {
+ System.out.print("Enter Symbol: ");
+ String symbol = sc.next();
+ cards.stream().filter(c ->
+c.symbol.equals(symbol)).forEach(System.out::println);
+ }
+} 
